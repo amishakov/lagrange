@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: jaakko.keranen@iki.fi\n"
 "POT-Creation-Date: 2024-10-03 14:43+0000\n"
-"PO-Revision-Date: 2024-10-11 10:28+0000\n"
+"PO-Revision-Date: 2024-11-07 10:26+0000\n"
 "Last-Translator: Arns Udovič <zordsdavini@arns.lt>\n"
 "Language-Team: Samogitian <http://weblate.skyjake.fi/projects/lagrange/ui/"
 "sgs/>\n"
@@ -1372,7 +1372,6 @@ msgstr "Balta"
 msgid "gempub.meta.author"
 msgstr "Autuorios"
 
-#, fuzzy
 msgid "prefs.accent.teal"
 msgstr "Tiurkė"
 
@@ -2154,3 +2153,72 @@ msgstr "Siunstė savėi kuopėjė"
 # Only shown in a message box when verifying the recipient fails.
 msgid "misfin.verify"
 msgstr "Tėkrėnams gavies"
+
+msgid "hint.upload.text"
+msgstr "ivesket teksta ikeltė"
+
+msgid "heading.uploadport"
+msgstr "Puorts ikelėmou par Titana"
+
+msgid "menu.upload.delete.confirm"
+msgstr "Tėkrā ėštrintė vėskon (nagrīžtamā)"
+
+msgid "hint.upload.token.long"
+msgstr "tokens - veizietė serverė instrucėjė"
+
+msgid "hint.upload.path"
+msgstr "URL kels"
+
+msgid "hint.upload.token"
+msgstr "veizietė serverė instrukcėjės"
+
+msgid "upload.file.drophere"
+msgstr "ivesket faila kieli arba ožtėmpket faila ont longa"
+
+msgid "misfin.redirect"
+msgstr "Gavies praša siunstė žėnotė i kėta adresa."
+
+msgid "misfin.failure"
+msgstr "Siuntont žėnotė atsėrada kliauza."
+
+msgid "misfin.needcert"
+msgstr "Torat identifėkoutėis doudami Misfin sertifėkata."
+
+msgid "misfin.unauth"
+msgstr "Nesat autorizavisis, ka siunstė gaviejou žėnotės."
+
+msgid "misfin.badcert"
+msgstr "Jūsa Misfin setifėkats ī natinkams."
+
+msgid "misfin.changed"
+msgstr "Jūsa Misfin sertifėkats nie tas pats, katruo tikiejuos gavies."
+
+msgid "misfin.unknown"
+msgstr "Napavīka ruoda so serverio."
+
+msgid "hint.upload.misfin"
+msgstr "ivesket žėnotė"
+
+msgid "upload.file.path"
+msgstr "Faila kels:"
+
+msgid "dlg.upload.sendmsg"
+msgstr "Siunstė žėnotė"
+
+msgid "dlg.upload.id.default"
+msgstr "Numatītāsis identėtets"
+
+msgid "upload.token"
+msgstr "Tokens:"
+
+msgid "upload.error.directory"
+msgstr "Vėn atskėrė failā gal būtė ikeltė, ale na cielas papkės."
+
+msgid "menu.upload.export"
+msgstr "Ekspuortoutė teksta"
+
+msgid "menu.upload.delete"
+msgstr "Ėštrintė vėskon"
+
+msgid "misfin.self.copy"
+msgstr "Atsiunsk munėi kuopėjė"
