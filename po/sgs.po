@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: jaakko.keranen@iki.fi\n"
 "POT-Creation-Date: 2024-10-03 14:43+0000\n"
-"PO-Revision-Date: 2024-11-07 10:26+0000\n"
+"PO-Revision-Date: 2024-11-15 10:25+0000\n"
 "Last-Translator: Arns Udovič <zordsdavini@arns.lt>\n"
 "Language-Team: Samogitian <http://weblate.skyjake.fi/projects/lagrange/ui/"
 "sgs/>\n"
@@ -2222,3 +2222,49 @@ msgstr "Ėštrintė vėskon"
 
 msgid "misfin.self.copy"
 msgstr "Atsiunsk munėi kuopėjė"
+
+msgid "dlg.uploadport.msg"
+msgstr ""
+"Nuruodītė Titan serverė puorta doutajam adresou. Puorts keravuojams slkierė "
+"specifinie konfigūracėjuo."
+
+msgid "dlg.glyphfinder.help"
+msgstr ""
+"Galat papruobītė ėiškuotė skyjake.fi šriftu bazė tinkonti šrifta, katras "
+"atvaizdoutom simbuolius, arba ronkuoms instaliouket TrueType šriftus."
+
+msgid "heading.glyphfinder"
+msgstr "Trūkst ruodbalsiu žėnklū"
+
+msgid "dlg.uploadport.set"
+msgstr "Nustatītė puorta"
+
+# used on mobile
+msgid "dlg.upload.pickfile"
+msgstr "Parinktė faila…"
+
+msgid "dlg.glyphfinder.missing"
+msgstr "Tuolīmiesni simbuoli naimeigt atvaizdoutė:"
+
+msgid "dlg.glyphfinder.help.empty"
+msgstr "Prašuom pārkrautė puslapi patikrintė trūkstamus ruodbalsiu žėnklus."
+
+msgid "dlg.glyphfinder.disable"
+msgstr "Ėšjungtė pārspiejėmus"
+
+msgid "dlg.translate.pre"
+msgstr "Navīkdītė prīšformatavėma:"
+
+msgid "dlg.glyphfinder.search"
+msgstr "Ėiškuotė šriftu bazie"
+
+msgid "heading.glyphfinder.results"
+msgstr "Paėiškuos rezoltatā"
+
+# used on mobile
+msgid "dlg.upload.text"
+msgstr "Ivesket teksta ikelėmou"
+
+# used on mobile
+msgid "dlg.upload.file"
+msgstr "Nie parinkts fails"
