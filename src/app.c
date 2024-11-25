@@ -4093,7 +4093,7 @@ static iBool handleNonWindowRelatedCommand_App_(iApp *d, const char *cmd) {
         if (startsWith_String(url, "//")) {
             prependCStr_String(url, "gemini:");
         }
-        if (!isEmpty_String(url) && !startsWithCase_String(url, "gemini://")) {
+        if (!isEmpty_String(url) && equal_Rangecc(urlScheme_String(url), "")) {
             prependCStr_String(url, "gemini://");
         }
         return iTrue;

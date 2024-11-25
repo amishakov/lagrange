@@ -6,6 +6,9 @@
 ```
 # Release notes
 
+## 1.18.4
+* Fixed use of non-Gemini search URLs. (Do not force-prepend "gemini://".)
+
 ## 1.18.3
 * TUI: Fixed background colors in reduced color modes (less than 256 colors).
 
