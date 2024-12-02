@@ -2657,31 +2657,6 @@ iInt2 size_GmDocument(const iGmDocument *d) {
     return d->size;
 }
 
-#if 0
-enum iGmDocumentBanner bannerType_GmDocument(const iGmDocument *d) {
-    return d->bannerType;
-}
-
-iBool hasSiteBanner_GmDocument(const iGmDocument *d) {
-    return siteBanner_GmDocument(d) != NULL;
-}
-
-const iGmRun *siteBanner_GmDocument(const iGmDocument *d) {
-    if (isEmpty_Array(&d->layout)) {
-        return iFalse;
-    }
-    const iGmRun *first = constFront_Array(&d->layout);
-    if (first->flags & siteBanner_GmRunFlag) {
-        return first;
-    }
-    return NULL;
-}
-
-const iString *bannerText_GmDocument(const iGmDocument *d) {
-    return &d->bannerText;
-}
-#endif
-
 const iArray *headings_GmDocument(const iGmDocument *d) {
     return &d->headings;
 }
