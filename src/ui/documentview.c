@@ -241,7 +241,9 @@ iRect documentBounds_DocumentView(const iDocumentView *d) {
     iBool       wasCentered = iFalse;
     rect.size.x = documentWidth_DocumentView(d);
     /* Content may not be always wrappable, so let it extend to window width if needed. */
-    if (contentWidth_GmDocument(d->doc) > size_GmDocument(d->doc).x) {
+    if (prefs_App()->expandToLongLines &&
+        contentWidth_GmDocument(d->doc) > size_GmDocument(d->doc).x &&
+        contentWidth_GmDocument(d->doc) < size_GmDocument(d->doc).x * 1.333f) { /* <1/3 increase */
         rect.size.x = iMini(iMax(rect.size.x, contentWidth_GmDocument(d->doc)),
                             maxDocumentWidth_DocumentView_(d));
     }

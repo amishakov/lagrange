@@ -3847,6 +3847,7 @@ iWidget *makePreferences_Widget(void) {
 #endif
         addDialogToggle_Widget(headings, values, "${prefs.biglede}", "prefs.biglede");
         addDialogToggle_Widget(headings, values, "${prefs.plaintext.wrap}", "prefs.plaintext.wrap");
+        addDialogToggle_Widget(headings, values, "${prefs.expandline}", "prefs.expandline");
         addDialogToggle_Widget(headings, values, "${prefs.centershort}", "prefs.centershort");
         addDialogPadding_(headings, values);
         addChild_Widget(headings, iClob(makeHeading_Widget("${prefs.quoteicon}")));

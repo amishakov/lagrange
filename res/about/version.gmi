@@ -7,8 +7,10 @@
 # Release notes
 
 ## 1.18.4
-* Fixed use of non-Gemini search URLs. (Do not force-prepend "gemini://".)
+* Added option to disable page width expansion to fit long lines.
+* Limited page width expansion to 33% so room is left for the current title in the margin.
 * Strip CR characters in content pasted to input fields. Line breaks are expected to be just LFs.
+* Fixed use of non-Gemini search URLs. (Do not force-prepend "gemini://".)
 * TUI: Fixed possible crash at launch.
 
 ## 1.18.3
