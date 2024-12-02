@@ -8,6 +8,8 @@
 
 ## 1.18.4
 * Fixed use of non-Gemini search URLs. (Do not force-prepend "gemini://".)
+* Strip CR characters in content pasted to input fields. Line breaks are expected to be just LFs.
+* TUI: Fixed possible crash at launch.
 
 ## 1.18.3
 * TUI: Fixed background colors in reduced color modes (less than 256 colors).
