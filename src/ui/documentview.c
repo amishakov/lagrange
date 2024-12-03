@@ -811,18 +811,18 @@ iDeclareType(DrawContext)
 
 struct Impl_DrawContext {
     const iDocumentView *view;
-    iRect widgetBounds;
-    int widgetFullWidth; /* including area behind scrollbar */
-    iRect docBounds;
-    iRangei vis;
-    iInt2 viewPos; /* document area origin */
-    iPaint paint;
-    iBool inSelectMark;
-    iBool inFoundMark;
-    iBool showLinkNumbers;
-    iRect firstMarkRect;
-    iRect lastMarkRect;
-    int drawDir; /* -1 for progressive reverse direction */
+    iRect       widgetBounds;
+    int         widgetFullWidth; /* including area behind scrollbar */
+    iRect       docBounds;
+    iRangei     vis;
+    iInt2       viewPos; /* document area origin */
+    iPaint      paint;
+    iBool       inSelectMark;
+    iBool       inFoundMark;
+    iBool       showLinkNumbers;
+    iRect       firstMarkRect;
+    iRect       lastMarkRect;
+    int         drawDir; /* -1 for progressive reverse direction */
     iGmRunRange runsDrawn;
 };
 
