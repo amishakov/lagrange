@@ -243,7 +243,7 @@ iRect documentBounds_DocumentView(const iDocumentView *d) {
     /* Content may not be always wrappable, so let it extend to window width if needed. */
     if (prefs_App()->expandToLongLines &&
         contentWidth_GmDocument(d->doc) > size_GmDocument(d->doc).x &&
-        contentWidth_GmDocument(d->doc) < size_GmDocument(d->doc).x * 1.333f) { /* <1/3 increase */
+        contentWidth_GmDocument(d->doc) < size_GmDocument(d->doc).x * 1.333f) { /* < ⅓ increase */
         rect.size.x = iMini(iMax(rect.size.x, contentWidth_GmDocument(d->doc)),
                             maxDocumentWidth_DocumentView_(d));
     }
