@@ -120,7 +120,7 @@ void init_Prefs(iPrefs *d) {
     d->boldLinkVisited    = iFalse;
     d->boldLinkDark       = iTrue;
     d->boldLinkLight      = iTrue;
-    d->lineWidth          = 38;
+    d->lineWidth          = deviceType_App() == phone_AppDeviceType ? 1000 /* fill */ : 38;
     d->lineSpacing        = 1.0f;
     d->tabWidth           = 8;
     d->bigFirstParagraph  = iTrue;
