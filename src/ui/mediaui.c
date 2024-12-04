@@ -46,45 +46,8 @@ static const char *volumeChar_(float volume) {
     return "\U0001f50a";
 }
 
-void init_PlayerUI(iPlayerUI *d, const iPlayer *player, iRect bounds) {
-#if defined (LAGRANGE_ENABLE_AUDIO)
-    d->player = player;
-    d->bounds = bounds;
-    const int height = height_Rect(bounds);
-    d->playPauseRect = (iRect){ addX_I2(topLeft_Rect(bounds), gap_UI / 2), init_I2(3 * height / 2, height) };
-    d->rewindRect    = (iRect){ topRight_Rect(d->playPauseRect), init1_I2(height) };
-    d->menuRect      = (iRect){ addX_I2(topRight_Rect(bounds), -height - gap_UI / 2), init1_I2(height) };
-    d->volumeRect    = (iRect){ addX_I2(topLeft_Rect(d->menuRect), -height), init1_I2(height) };
-    d->volumeAdjustRect = d->volumeRect;
-    adjustEdges_Rect(&d->volumeAdjustRect, 0, 0, 0, -35 * gap_UI);
-    d->scrubberRect  = initCorners_Rect(topRight_Rect(d->rewindRect), bottomLeft_Rect(d->volumeRect));
-    /* Volume slider. */ {
-        d->volumeSlider = shrunk_Rect(d->volumeAdjustRect, init_I2(gap_UI / 2, gap_UI));
-        adjustEdges_Rect(&d->volumeSlider, 0, -width_Rect(d->volumeRect) - 2 * gap_UI, 0, 5 * gap_UI);
-    }
-#endif /* LAGRANGE_ENABLE_AUDIO */
-}
-
-static void drawInlineButton_(iPaint *p, iRect rect, const char *label, int font) {
-    const iInt2 mouse     = mouseCoord_Window(get_Window(), 0);
-    const iBool isHover   = contains_Rect(rect, mouse);
-    const iBool isPressed = isHover && (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON_LEFT) != 0;
-    const int frame = (isPressed ? uiTextCaution_ColorId : isHover ? uiHeading_ColorId : uiAnnotation_ColorId);
-    iRect frameRect = shrunk_Rect(rect, init_I2(gap_UI / 2, gap_UI));
-    drawRect_Paint(p, frameRect, frame);
-    if (isPressed) {
-        fillRect_Paint(
-            p,
-            adjusted_Rect(shrunk_Rect(frameRect, divi_I2(gap2_UI, 2)), zero_I2(), one_I2()),
-            frame);
-    }
-    const int fg = isPressed ? (permanent_ColorId | uiBackground_ColorId) : uiHeading_ColorId;
-    drawCentered_Text(font, frameRect, iTrue, fg, "%s", label);
-}
-
 static const uint32_t sevenSegmentDigit_ = 0x1fbf0;
-
-static const char *sevenSegmentStr_ = "\U0001fbf0";
+static const char    *sevenSegmentStr_   = "\U0001fbf0";
 
 static int drawSevenSegmentTime_(iInt2 pos, int color, int align, int seconds) { /* returns width */
     const int hours = seconds / 3600;
@@ -143,6 +106,42 @@ void drawSevenSegmentBytes_MediaUI(int font, iInt2 pos, int majorColor, int mino
 }
 
 /*----------------------------------------------------------------------------------------------*/
+
+void init_PlayerUI(iPlayerUI *d, const iPlayer *player, iRect bounds) {
+#if defined (LAGRANGE_ENABLE_AUDIO)
+    d->player = player;
+    d->bounds = bounds;
+    const int height = height_Rect(bounds);
+    d->playPauseRect = (iRect){ addX_I2(topLeft_Rect(bounds), gap_UI / 2), init_I2(3 * height / 2, height) };
+    d->rewindRect    = (iRect){ topRight_Rect(d->playPauseRect), init1_I2(height) };
+    d->menuRect      = (iRect){ addX_I2(topRight_Rect(bounds), -height - gap_UI / 2), init1_I2(height) };
+    d->volumeRect    = (iRect){ addX_I2(topLeft_Rect(d->menuRect), -height), init1_I2(height) };
+    d->volumeAdjustRect = d->volumeRect;
+    adjustEdges_Rect(&d->volumeAdjustRect, 0, 0, 0, -35 * gap_UI);
+    d->scrubberRect  = initCorners_Rect(topRight_Rect(d->rewindRect), bottomLeft_Rect(d->volumeRect));
+    /* Volume slider. */ {
+        d->volumeSlider = shrunk_Rect(d->volumeAdjustRect, init_I2(gap_UI / 2, gap_UI));
+        adjustEdges_Rect(&d->volumeSlider, 0, -width_Rect(d->volumeRect) - 2 * gap_UI, 0, 5 * gap_UI);
+    }
+#endif /* LAGRANGE_ENABLE_AUDIO */
+}
+
+static void drawInlineButton_(iPaint *p, iRect rect, const char *label, int font) {
+    const iInt2 mouse     = mouseCoord_Window(get_Window(), 0);
+    const iBool isHover   = contains_Rect(rect, mouse);
+    const iBool isPressed = isHover && (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON_LEFT) != 0;
+    const int frame = (isPressed ? uiTextCaution_ColorId : isHover ? uiHeading_ColorId : uiAnnotation_ColorId);
+    iRect frameRect = shrunk_Rect(rect, init_I2(gap_UI / 2, gap_UI));
+    drawRect_Paint(p, frameRect, frame);
+    if (isPressed) {
+        fillRect_Paint(
+            p,
+            adjusted_Rect(shrunk_Rect(frameRect, divi_I2(gap2_UI, 2)), zero_I2(), one_I2()),
+            frame);
+    }
+    const int fg = isPressed ? (permanent_ColorId | uiBackground_ColorId) : uiHeading_ColorId;
+    drawCentered_Text(font, frameRect, iTrue, fg, "%s", label);
+}
 
 void draw_PlayerUI(iPlayerUI *d, iPaint *p) {
 #if defined (LAGRANGE_ENABLE_AUDIO)
