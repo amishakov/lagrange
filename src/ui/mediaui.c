@@ -111,6 +111,39 @@ static int drawSevenSegmentTime_(iInt2 pos, int color, int align, int seconds) {
     return size.x;
 }
 
+void drawSevenSegmentBytes_MediaUI(int font, iInt2 pos, int majorColor, int minorColor, size_t numBytes) {
+    iString digits;
+    init_String(&digits);
+    if (numBytes == 0) {
+        appendChar_String(&digits, sevenSegmentDigit_);
+    }
+    else {
+        int magnitude = 0;
+        while (numBytes) {
+            if (magnitude == 3) {
+                prependCStr_String(&digits, "\u2024");
+            }
+            else if (magnitude == 6) {
+                prependCStr_String(&digits, restore_ColorEscape "\u2024");
+            }
+            else if (magnitude == 9) {
+                prependCStr_String(&digits, "\u2024");
+            }
+            prependChar_String(&digits, sevenSegmentDigit_ + (numBytes % 10));
+            numBytes /= 10;
+            magnitude++;
+        }
+        if (magnitude > 6) {
+            prependCStr_String(&digits, escape_Color(majorColor));
+        }
+    }
+    const iInt2 dims = measureRange_Text(font, range_String(&digits)).bounds.size;
+    drawRange_Text(font, addX_I2(pos, -dims.x), minorColor, range_String(&digits));
+    deinit_String(&digits);
+}
+
+/*----------------------------------------------------------------------------------------------*/
+
 void draw_PlayerUI(iPlayerUI *d, iPaint *p) {
 #if defined (LAGRANGE_ENABLE_AUDIO)
     const int   playerBackground_ColorId = uiBackground_ColorId;
@@ -130,22 +163,35 @@ void draw_PlayerUI(iPlayerUI *d, iPaint *p) {
     }
     const int   hgt       = lineHeight_Text(uiLabelBig_FontId);
     const int   yMid      = mid_Rect(d->scrubberRect).y;
+    const int   digitOff  = -mid_Rect(visualBounds_Text(uiLabelBig_FontId,
+                                                        range_CStr(sevenSegmentStr_))).y;
     const float playTime  = time_Player(d->player);
     const float totalTime = duration_Player(d->player);
     const int   bright    = uiHeading_ColorId;
     const int   dim       = uiAnnotation_ColorId;
     int leftWidth = drawSevenSegmentTime_(
-        init_I2(left_Rect(d->scrubberRect) + 2 * gap_UI, yMid - hgt / 2),
+        init_I2(left_Rect(d->scrubberRect) + 2 * gap_UI, yMid + digitOff),
         isPaused_Player(d->player) ? dim : bright,
         left_Alignment,
         iRound(playTime));
     int rightWidth = 0;
     if (totalTime > 0) {
-        rightWidth =
-            drawSevenSegmentTime_(init_I2(right_Rect(d->scrubberRect) - 2 * gap_UI, yMid - hgt / 2),
-                                  dim,
-                                  right_Alignment,
-                                  iRound(totalTime));
+        rightWidth = drawSevenSegmentTime_(
+            init_I2(right_Rect(d->scrubberRect) - 2 * gap_UI, yMid + digitOff),
+            dim,
+            right_Alignment,
+            iRound(totalTime));
+    }
+    else {
+        const int font   = uiContent_FontId;
+        const int visOff = -mid_Rect(visualBounds_Text(font, range_CStr(sevenSegmentStr_))).y;
+        const int x      = right_Rect(d->scrubberRect) - 2 * gap_UI;
+        const int y      = yMid + visOff;
+        drawSevenSegmentBytes_MediaUI(font,
+                                      init_I2(x, y),
+                                      uiTextStrong_ColorId,
+                                      uiTextDim_ColorId,
+                                      sourceDataSize_Player(d->player));
     }
     /* Scrubber. */
     const int   s1       = left_Rect(d->scrubberRect) + leftWidth + 6 * gap_UI;
@@ -202,44 +248,11 @@ void draw_PlayerUI(iPlayerUI *d, iPaint *p) {
 
 /*----------------------------------------------------------------------------------------------*/
 
-void drawSevenSegmentBytes_MediaUI(int font, iInt2 pos, int majorColor, int minorColor, size_t numBytes) {
-    iString digits;
-    init_String(&digits);
-    if (numBytes == 0) {
-        appendChar_String(&digits, sevenSegmentDigit_);
-    }
-    else {
-        int magnitude = 0;
-        while (numBytes) {
-            if (magnitude == 3) {
-                prependCStr_String(&digits, "\u2024");
-            }
-            else if (magnitude == 6) {
-                prependCStr_String(&digits, restore_ColorEscape "\u2024");
-            }
-            else if (magnitude == 9) {
-                prependCStr_String(&digits, "\u2024");
-            }
-            prependChar_String(&digits, sevenSegmentDigit_ + (numBytes % 10));
-            numBytes /= 10;
-            magnitude++;
-        }
-        if (magnitude > 6) {
-            prependCStr_String(&digits, escape_Color(majorColor));
-        }
-    }
-    const iInt2 dims = measureRange_Text(font, range_String(&digits)).bounds.size;
-    drawRange_Text(font, addX_I2(pos, -dims.x), minorColor, range_String(&digits));
-    deinit_String(&digits);
-}
-
 void init_DownloadUI(iDownloadUI *d, const iMedia *media, uint16_t mediaId, iRect bounds) {
     d->media   = media;
     d->mediaId = mediaId;
     d->bounds  = bounds;
 }
-
-/*----------------------------------------------------------------------------------------------*/
 
 iBool processEvent_DownloadUI(iDownloadUI *d, const SDL_Event *ev) {
     if (ev->type == SDL_MOUSEBUTTONDOWN || ev->type == SDL_MOUSEBUTTONUP) {
