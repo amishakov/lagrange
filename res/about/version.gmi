@@ -14,6 +14,7 @@
 * Fixed use of non-Gemini search URLs. (Do not force-prepend "gemini://".)
 * Fixed handling of the reserved `:` character in URL paths.
 * TUI: Fixed possible crash at launch.
+* Updated UI translations.
 
 ## 1.18.3
 * TUI: Fixed background colors in reduced color modes (less than 256 colors).
