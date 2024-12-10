@@ -97,7 +97,7 @@ void init_Prefs(iPrefs *d) {
     d->warnAboutMissingGlyphs                 = iTrue;
     d->markdownAsSource                       = iTrue;
     d->skipIndexPageOnParentNavigation        = iTrue;
-    d->edgeSwipe                              = iTrue;
+    d->edgeSwipe                              = !isAndroid_Platform(); /* conflict with system */
     d->pageSwipe                              = iTrue;
     d->capsLockKeyModifier                    = iFalse;
     d->misfinSelfCopy                         = iTrue;
