@@ -15,7 +15,7 @@
 #   for your personal use a pkg-config sdl2.pc file that uses the Windows
 #   version of the library.
 
-cmake_minimum_required (VERSION 3.9)
+cmake_minimum_required (VERSION 3.10)
 
 project (Lagrange
     VERSION 1.18.4
